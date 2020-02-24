@@ -8,14 +8,14 @@
 
 name: Build OpenWrt WizFi630S
 
-on:
-  release:
-    types: [published]
-  push:
-    branches:
-      - master
-    paths:
-      - '.config'
+on: [push]
+#   release:
+#     types: [published]
+#   push:
+#     branches:
+#       - master
+#     paths:
+#       - '.config'
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:
@@ -34,6 +34,7 @@ env:
 
 jobs:
   build:
+    
     runs-on: ubuntu-latest
 
     steps:
