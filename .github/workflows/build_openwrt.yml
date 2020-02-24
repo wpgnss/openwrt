@@ -86,14 +86,14 @@ jobs:
     - name: Download package
       id: package
       run: |
-#        cd openwrt
+
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
     - name: Compile the firmware
       id: compile
       run: |
-#        cd openwrt
+
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
         echo "::set-output name=status::success"
@@ -102,14 +102,12 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: OpenWrt_directory
-#         path: openwrt/bin
-        path: bin:  
+        path: bin:
 
     - name: Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-#        cd openwrt/bin/targets/*/*
         cd bin/targets/*/*
         rm -rf packages
         echo "::set-env name=FIRMWARE::$(pwd)"
