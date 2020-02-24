@@ -102,7 +102,7 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: OpenWrt_directory
-        path: bin:
+        path: bin
 
     - name: Organize files
       id: organize
